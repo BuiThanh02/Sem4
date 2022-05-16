@@ -3,4 +3,45 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
+    <servlet>
+        <servlet-name>CreateCustomerServlet</servlet-name>
+        <servlet-class>com.example.javacore_customers_demo.controller.CreateCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerServlet</servlet-name>
+        <url-pattern>/admin/customers/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteCustomerServlet</servlet-name>
+        <servlet-class>com.example.javacore_customers_demo.controller.DeleteCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCustomerServlet</servlet-name>
+        <url-pattern>/admin/customers/delete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DetailCustomerServlet</servlet-name>
+        <servlet-class>com.example.javacore_customers_demo.controller.DetailCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DetailCustomerServlet</servlet-name>
+        <url-pattern>/admin/customers/detail</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ListCustomerServlet</servlet-name>
+        <servlet-class>com.example.javacore_customers_demo.controller.ListCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListCustomerServlet</servlet-name>
+        <url-pattern>/admin/customers/list</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditCustomerServlet</servlet-name>
+        <servlet-class>com.example.javacore_customers_demo.controller.EditCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditCustomerServlet</servlet-name>
+        <url-pattern>/admin/customers/edit</url-pattern>
+    </servlet-mapping>
 </web-app>

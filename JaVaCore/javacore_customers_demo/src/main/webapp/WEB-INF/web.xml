@@ -44,4 +44,12 @@
         <servlet-name>EditCustomerServlet</servlet-name>
         <url-pattern>/admin/customers/edit</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>RecentCustomerServlet</servlet-name>
+        <servlet-class>com.example.javacore_customers_demo.controller.recentCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RecentCustomerServlet</servlet-name>
+        <url-pattern>/admin/customers/recent</url-pattern>
+    </servlet-mapping>
 </web-app>

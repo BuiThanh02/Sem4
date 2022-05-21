@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>CreateCarServlet</servlet-name>
+        <servlet-class>com.example.productmanagementdemo.controller.CreateCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateCarServlet</servlet-name>
+        <url-pattern>/admin/cars/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <servlet-class>com.example.productmanagementdemo.controller.DeleteCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <url-pattern>/admin/cars/delete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditCarServlet</servlet-name>
+        <servlet-class>com.example.productmanagementdemo.controller.EditCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditCarServlet</servlet-name>
+        <url-pattern>/admin/cars/edit</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DetailCarServlet</servlet-name>
+        <servlet-class>com.example.productmanagementdemo.controller.DetailCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DetailCarServlet</servlet-name>
+        <url-pattern>/admin/cars/detail</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ListCarServlet</servlet-name>
+        <servlet-class>com.example.productmanagementdemo.controller.ListCarServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListCarServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+</web-app>

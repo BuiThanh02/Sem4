@@ -10,37 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95310ba4-07c9-430e-903f-c46db459658b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/controller/CreateCarServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/controller/DeleteCarServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/controller/DetailCarServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/controller/EditCarServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/controller/ListCarServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/entity/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/model/CarModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/model/MySQLCarModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/util/ConnectionHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/util/DateTimeHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/productmanagementdemo/util/ValidationUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/cars/detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/cars/form.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/cars/list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/errors/404.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/errors/500.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/footer.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/head.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/header.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/menu.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/navbar.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/script.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin/includes/sidebar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BaiTapRegisterForm/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BaiTapRegisterForm/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ShoppingCartDemo/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCartDemo/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javacore_customers_demo/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../javacore_customers_demo/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javacore_customers_demo/src/main/java/com/example/javacore_customers_demo/controller/DetailCustomerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../javacore_customers_demo/src/main/java/com/example/javacore_customers_demo/controller/DetailCustomerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javacore_customers_demo/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../javacore_customers_demo/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javacore_customers_demo/src/main/webapp/admin/customers/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../javacore_customers_demo/src/main/webapp/admin/customers/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javacore_customers_demo/src/main/webapp/admin/customers/form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../javacore_customers_demo/src/main/webapp/admin/customers/form.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javacore_customers_demo/src/main/webapp/admin/includes/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../javacore_customers_demo/src/main/webapp/admin/includes/head.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +164,8 @@
       <workItem from="1653107680727" duration="4922000" />
       <workItem from="1653113746456" duration="1822000" />
       <workItem from="1653118228453" duration="282000" />
-      <workItem from="1653126672409" duration="789000" />
+      <workItem from="1653126672409" duration="1384000" />
+      <workItem from="1653456494292" duration="254000" />
     </task>
     <servers />
   </component>

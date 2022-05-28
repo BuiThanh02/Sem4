@@ -20,7 +20,7 @@ public class MySqlAccountModel implements AccountModel {
         try {
             Connection connection = ConnectionHelper.getConnection();
             String sqlQuery = "insert into accounts " +
-                    "(username, passwordHash, salt, email, phone, role, createdAt, updatedAt, status) " +
+                    "(username, passwordHash, salt, email, phone, createdAt, updatedAt, status) " +
                     "values " +
                     "(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -29,10 +29,9 @@ public class MySqlAccountModel implements AccountModel {
             preparedStatement.setString(3, obj.getSalt());
             preparedStatement.setString(4, obj.getEmail());
             preparedStatement.setString(5, obj.getPhone());
-            preparedStatement.setInt(6, obj.getRole());
-            preparedStatement.setString(7, obj.getCreatedAt().toString());
-            preparedStatement.setString(8, obj.getUpdatedAt().toString());
-            preparedStatement.setInt(9, obj.getStatus().getValue());
+            preparedStatement.setString(6, obj.getCreatedAt().toString());
+            preparedStatement.setString(7, obj.getUpdatedAt().toString());
+            preparedStatement.setInt(8, obj.getStatus().getValue());
             System.out.println("Connection success!");
             preparedStatement.execute();
             return obj;
@@ -68,7 +67,6 @@ public class MySqlAccountModel implements AccountModel {
                 Account obj = new Account(id, username, passwordHash, salt, email, phone, AccountStatus.of(status));
                 obj.setCreatedAt(createdAt);
                 obj.setUpdatedAt(updatedAt);
-                obj.setRole(role);
                 list.add(obj);
             }
         } catch (SQLException e) {
@@ -102,7 +100,6 @@ public class MySqlAccountModel implements AccountModel {
                 obj = new Account(id, username, passwordHash, salt, email, phone, AccountStatus.of(status));
                 obj.setCreatedAt(createdAt);
                 obj.setUpdatedAt(updatedAt);
-                obj.setRole(role);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -135,7 +132,6 @@ public class MySqlAccountModel implements AccountModel {
                 obj = new Account(id, username, passwordHash, salt, email, phone, AccountStatus.of(status));
                 obj.setCreatedAt(createdAt);
                 obj.setUpdatedAt(updatedAt);
-                obj.setRole(role);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -167,7 +163,6 @@ public class MySqlAccountModel implements AccountModel {
                 obj = new Account(id, username, passwordHash, salt, email, phone, AccountStatus.of(status));
                 obj.setCreatedAt(createdAt);
                 obj.setUpdatedAt(updatedAt);
-                obj.setRole(role);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -180,18 +175,17 @@ public class MySqlAccountModel implements AccountModel {
         try {
             Connection connection = ConnectionHelper.getConnection();
             String sqlQuery = "update accounts " +
-                    "set username = ?, passwordHash = ?, salt = ?, email = ?, phone = ?, role = ?, createdAt = ?, updatedAt = ?, status = ? where id = ?";
+                    "set username = ?, passwordHash = ?, salt = ?, email = ?, phone = ?, createdAt = ?, updatedAt = ?, status = ? where id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
             preparedStatement.setString(1, updateObj.getUsername());
             preparedStatement.setString(2, updateObj.getPasswordHash());
             preparedStatement.setString(3, updateObj.getSalt());
             preparedStatement.setString(4, updateObj.getEmail());
             preparedStatement.setString(5, updateObj.getPhone());
-            preparedStatement.setInt(6, updateObj.getRole());
-            preparedStatement.setString(7, updateObj.getCreatedAt().toString());
-            preparedStatement.setString(8, updateObj.getUpdatedAt().toString());
-            preparedStatement.setInt(9, updateObj.getStatus().getValue());
-            preparedStatement.setInt(10, id);
+            preparedStatement.setString(6, updateObj.getCreatedAt().toString());
+            preparedStatement.setString(7, updateObj.getUpdatedAt().toString());
+            preparedStatement.setInt(8, updateObj.getStatus().getValue());
+            preparedStatement.setInt(9, id);
             System.out.println("Connection success!");
             preparedStatement.execute();
             return updateObj;

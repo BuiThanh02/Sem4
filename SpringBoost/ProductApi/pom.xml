@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.T2010A</groupId>
-    <artifactId>demoSpring</artifactId>
+    <artifactId>ProductApi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demoSpring</name>
-    <description>demoSpring</description>
+    <name>ProductApi</name>
+    <description>ProductApi</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -26,6 +26,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

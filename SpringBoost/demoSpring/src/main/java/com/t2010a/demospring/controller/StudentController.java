@@ -1,92 +1,70 @@
 package com.t2010a.demospring.controller;
 
 import com.t2010a.demospring.entity.Student;
+import com.t2010a.demospring.repository.StudentRepository;
+import com.t2010a.demospring.service.StudentService;
 import lombok.Builder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@Builder
+
 @RequestMapping(path = "api/v1/students")
 @RestController
 public class StudentController {
-
-    private static List<Student> list;
-
-    public StudentController(){
-        list = new ArrayList<>();
-        list.add(Student.builder().rollNumber("A001").fulllName("Nguyên Hoàng Anh").build());
-        list.add(Student.builder().rollNumber("A002").fulllName("Phạm Thị Hoài An").build());
-        list.add(Student.builder().rollNumber("A003").fulllName("Nguyễn Xuân Phúc").build());
-        list.add(Student.builder().rollNumber("A004").fulllName("Phạm Minh Chính").build());
-        list.add(Student.builder().rollNumber("A005").fulllName("Nguyễn Phú Trọng").build());
-        list.add(Student.builder().rollNumber("A006").fulllName("Vương Đình Huệ").build());
-        list.add(Student.builder().rollNumber("A007").fulllName("Võ Văn Thưởng").build());
-
-    }
+    @Autowired
+    StudentService studentService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Student> findAll(){
-        return list;
+    public ResponseEntity<Iterable<Student>> findAll(){
+        return ResponseEntity.ok(studentService.findAll());
     }
 
     @RequestMapping(method = RequestMethod.GET, path = {"id"})
-    public Student findById(@PathVariable String id){
-        int foundIndex = -1;
-        for (int i = -1; i < list.size(); i++){
-            if (list.get(i).getRollNumber().equals(id)) {
-                foundIndex = i;
-                break;
-            }
+    public ResponseEntity<?> findById(@PathVariable String id){
+        Optional<Student> optionalStudent = studentService.findById(id);
+        if (!optionalStudent.isPresent()){
+            ResponseEntity.badRequest().build();
         }
-        if (foundIndex == -1){
-            return null;
-        }
-
-        return list.get(foundIndex);
+        return ResponseEntity.ok(optionalStudent.get());
     }
-    @RequestMapping(method = RequestMethod.POST, path = {"id"})
-    public Student save(@RequestBody Student obj){
-        list.add(obj);
-        return obj;
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Student> save(@RequestBody Student student){
+        return ResponseEntity.ok(studentService.save(student));
     }
     @RequestMapping(method = RequestMethod.DELETE, path = {"id"})
-    public boolean deleteById(@PathVariable String id){
-        int foundIndex = -1;
-        for (int i = -1; i < list.size(); i++){
-            if (list.get(i).getRollNumber().equals(id)) {
-                foundIndex = i;
-                break;
-            }
+    public ResponseEntity<?> deleteById(@PathVariable String id){
+        if (!studentService.findById(id).isPresent()){
+            ResponseEntity.badRequest().build();
         }
-        if (foundIndex == -1){
-            return false;
-        }
-        list.remove(foundIndex);
-        return true;
+        studentService.deleteById(id);
+        return ResponseEntity.ok().build();
     }
     @RequestMapping(method = RequestMethod.PUT, path = {"id"})
-    public String update(@PathVariable String id, @RequestBody Student updateStudent){
-        int foundIndex = -1;
-        for (int i = -1; i < list.size(); i++){
-            if (list.get(i).getRollNumber().equals(id)) {
-                foundIndex = i;
-                break;
-            }
+    public ResponseEntity<Student> update(@PathVariable String id, @RequestBody Student updateStudent) {
+        Optional<Student> optionalStudent = studentService.findById(id);
+        if (!optionalStudent.isPresent()) {
+            ResponseEntity.badRequest().build();
         }
-        if (foundIndex == -1){
-            return null;
-        }
-        Student existing = list.get(foundIndex);
-        existing.setFulllName(updateStudent.getFulllName());
-        existing.setPhone(updateStudent.getPhone());
-        existing.setNote(updateStudent.getNote());
-        existing.setAddress(updateStudent.getAddress());
-        existing.setEmail(updateStudent.getEmail());
-        existing.setStatus(updateStudent.getStatus());
-        existing.setDob(updateStudent.getDob());
-        return "update by id";    }
+        Student existStudent = optionalStudent.get();
+
+        existStudent.setFullName(updateStudent.getFullName());
+        existStudent.setStatus(updateStudent.getStatus());
+        existStudent.setNote(updateStudent.getNote());
+        existStudent.setDob(updateStudent.getDob());
+        existStudent.setEmail(updateStudent.getEmail());
+        existStudent.setPhone(updateStudent.getPhone());
+        existStudent.setUpdatedAt(updateStudent.getUpdatedAt());
+        existStudent.setCreatedAt(updateStudent.getCreatedAt());
+        existStudent.setAddress(updateStudent.getAddress());
+
+        return ResponseEntity.ok(studentService.save(existStudent));
+    }
 
 
 }

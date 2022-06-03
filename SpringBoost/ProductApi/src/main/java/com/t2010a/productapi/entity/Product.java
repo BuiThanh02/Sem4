@@ -1,6 +1,5 @@
-package com.t2010a.demospring.entity;
+package com.t2010a.productapi.entity;
 
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,19 +17,23 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "students")
-public class Student {
+@Table(name = "products")
+public class Product {
     @Id
-    private String rollNumber;
-    private String fullName;
-    private String email;
-    private String phone;
-    private String address;
-    private String note;
-    private LocalDateTime dob;
+    private String proId;
+    private String proName;
+    private int proQty;
+    private String proDescribe;
+    private String proDetail;
+    private double proPrice;
+    private String makerDetail;
     @CreationTimestamp
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
+    private LocalDateTime deletedAt;
+    private String userCreateDetail;
+    private String userUpdateDetail;
+    private String userDeleteDetail;
     private int status;
 }

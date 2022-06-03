@@ -10,8 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95310ba4-07c9-430e-903f-c46db459658b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../RegisterAuthen/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RegisterAuthen/src/main/java/com/example/registerauthen/Model/MySqlAccountModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../RegisterAuthen/src/main/java/com/example/registerauthen/Model/MySqlAccountModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoost/ProductApi/src/main/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringBoost/ProductApi/src/main/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoost/ProductApi/src/main/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringBoost/ProductApi/src/main/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoost/ProductApi/src/main/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringBoost/ProductApi/src/main/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SpringBoost/ProductApi/src/main/java/com/t2010a/productapi/api/ProductApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringBoost/ProductApi/src/main/java/com/t2010a/productapi/api/ProductApi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,18 +56,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/hoc/GitHub/Sem4/JaVaCore/ProductManagementDemo",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/hoc/GitHub/Sem4/JaVaCore/ProductManagementDemo&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.62" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.62" ALTERNATIVE_JRE_ENABLED="false">
       <deployment>
@@ -171,6 +174,7 @@
       <workItem from="1653126672409" duration="1384000" />
       <workItem from="1653456494292" duration="254000" />
       <workItem from="1653548273843" duration="351000" />
+      <workItem from="1654264809104" duration="617000" />
     </task>
     <servers />
   </component>

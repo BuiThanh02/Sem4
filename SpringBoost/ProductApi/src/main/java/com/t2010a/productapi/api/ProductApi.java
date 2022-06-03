@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RequestMapping(path = "api/v1/products")
 @RestController
+@CrossOrigin("*")
 public class ProductApi {
     @Autowired
     private ProductService productService;

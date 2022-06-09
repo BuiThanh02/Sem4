@@ -23,6 +23,7 @@ public class Product {
     private String proId;
     private String proName;
     private int proQty;
+    private String thumbnail;
     private String proDescribe;
     private String proDetail;
     private double proPrice;

@@ -67,6 +67,7 @@ public class ProductApi {
         existProduct.setUserUpdateDetail(updateProduct.getUserUpdateDetail());
         existProduct.setUserCreateDetail(updateProduct.getUserCreateDetail());
         existProduct.setUserDeleteDetail(updateProduct.getUserDeleteDetail());
+        existProduct.setThumbnail(updateProduct.getThumbnail());
 
         return ResponseEntity.ok(productService.save(existProduct));
     }

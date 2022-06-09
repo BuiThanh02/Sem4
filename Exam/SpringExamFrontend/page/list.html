@@ -73,7 +73,7 @@
         <!-- Brand Logo -->
         <a href="list.html" class="brand-link">
             <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">Product Management</span>
+            <span class="brand-text font-weight-light">Employee Management</span>
         </a>
 
         <!-- Sidebar -->
@@ -109,7 +109,16 @@
                         <a href="list.html" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Product
+                                List Employee
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="form.html" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Create Employee
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -123,22 +132,6 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>DataTables</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">DataTables</li>
-                        </ol>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
 
         <!-- Main content -->
         <section class="content">
@@ -148,7 +141,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Product</h3>
+                                <h3 class="card-title">Employee</h3>
                                 <div class="text-right">
                                     <a class="btn btn-info btn-sm " href="form.html">
                                         <i class="fas fa-pencil-alt ">
@@ -162,12 +155,9 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Thumbnail</th>
-                                        <th>Product Name</th>
-                                        <th>Describe</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Action</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>WAGE</th>
                                     </tr>
                                     </thead>
                                     <tbody id="list-product">
@@ -175,12 +165,9 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Thumbnail</th>
-                                        <th>Product Name</th>
-                                        <th>Describe</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Action</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>WAGE</th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -257,36 +244,15 @@
     document.addEventListener('DOMContentLoaded', function () {
         var xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = function () {
-            if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+            if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
                 var contentText = '';
                 var jsonResult = JSON.parse(xmlHttpRequest.responseText);
                 for (let i = 0; i < jsonResult.length; i++) {
                     const element = jsonResult[i];
                     contentText += `<tr>
-                                            <td>
-                                                <img src="${element.thumbnail}" alt="${element.proName}" style="border-radius: 100px; width: 10%">
-                                            </td>
-                                            <td> ${element.proName} </td>
-                                            <td> ${element.proDescribe} </td>
-                                            <td>$ ${element.proPrice} </td>
-                                            <td> ${element.proQty} </td>
-                                            <td class="project-actions">
-                                              <a class="btn btn-primary btn-sm" href="detail.html?id=${element.proId}">
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                View
-                                              </a>
-                                              <a class="btn btn-info btn-sm" href="form.html/id=${element.proId}">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                              </a>
-                                              <a class="btn btn-danger btn-sm" href="detail.html/id=${element.proId}">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                              </a>
-                                            </td>
+                                            <td> ${element.id} </td>
+                                            <td> ${element.name} </td>
+                                            <td>$ ${element.wage} </td>
                                         </tr>`;
                 }
                 console.log(contentText);
@@ -297,7 +263,7 @@
                 console.log(jsonResult);
             }
         }
-        xmlHttpRequest.open('GET', 'https://t2010a-springboot-demo.herokuapp.com/api/v1/products', true)
+        xmlHttpRequest.open('GET', 'http://localhost:8066/api/v1/employees', true)
         xmlHttpRequest.send();
     })
 </script>

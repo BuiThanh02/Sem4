@@ -300,8 +300,7 @@
                 }
             }
         }
-        xmlHttpRequest.open('GET', `https://t2010a-springboot-demo.herokuapp.com/api/v1/products/${proId}`, false)
-        xmlHttpRequest.setRequestHeader('Content-Type', 'application/json')
+        xmlHttpRequest.open('GET', `https://t2010a-springboot-demo.herokuapp.com/api/v1/products/${proId}`)
         xmlHttpRequest.send()
     })
 </script>

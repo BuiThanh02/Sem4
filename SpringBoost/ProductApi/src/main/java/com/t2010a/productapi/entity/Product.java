@@ -32,7 +32,7 @@ public class Product {
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
-    private LocalDateTime deletedAt;
+    private Date deletedAt;
     private String userCreateDetail;
     private String userUpdateDetail;
     private String userDeleteDetail;

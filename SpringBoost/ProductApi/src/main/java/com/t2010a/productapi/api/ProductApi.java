@@ -20,7 +20,7 @@ public class ProductApi {
         return ResponseEntity.ok(productService.findAll());
     }
 
-    @RequestMapping(method = RequestMethod.GET,path = {"id"})
+    @RequestMapping(method = RequestMethod.GET,path = "{id}")
     public ResponseEntity<?> findById(@PathVariable String proId){
         Optional<Product> optionalProduct = productService.findById(proId);
         if (!optionalProduct.isPresent()){
@@ -37,7 +37,7 @@ public class ProductApi {
         return ResponseEntity.ok(productService.save(product));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE,path = {"id"})
+    @RequestMapping(method = RequestMethod.DELETE,path = "{id}")
     public ResponseEntity<?> deleteById(@PathVariable String proId){
         if (!productService.findById(proId).isPresent()){
             ResponseEntity.badRequest().build();
@@ -46,7 +46,7 @@ public class ProductApi {
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(method = RequestMethod.PUT, path = {"id"})
+    @RequestMapping(method = RequestMethod.PUT, path = "{id}")
     public ResponseEntity<Product> update(@PathVariable String proId, @RequestBody Product updateProduct){
         Optional<Product> optionalProduct = productService.findById(proId);
         if (!optionalProduct.isPresent()){

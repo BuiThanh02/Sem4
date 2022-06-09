@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56cfcc86-d193-414f-af68-bca222adf8c5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Exam/SpringExam/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exam/SpringExam/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Exam/SpringExam/SpringExam.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exam/SpringExam/SpringExam.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Exam/SpringExamFrontend/page/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exam/SpringExamFrontend/page/form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Exam/SpringExamFrontend/page/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exam/SpringExamFrontend/page/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Exam/Exam.rar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/page/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductApi/src/main/java/com/t2010a/productapi/api/ProductApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProductApi/src/main/java/com/t2010a/productapi/api/ProductApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductApi/src/main/java/com/t2010a/productapi/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProductApi/src/main/java/com/t2010a/productapi/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductApi/src/main/java/com/t2010a/productapi/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProductApi/src/main/java/com/t2010a/productapi/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/form.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +64,8 @@
       <workItem from="1654588685552" duration="3821000" />
       <workItem from="1654593616811" duration="2419000" />
       <workItem from="1654742700412" duration="10581000" />
-      <workItem from="1654758600749" duration="1345000" />
+      <workItem from="1654758600749" duration="1836000" />
+      <workItem from="1654780322014" duration="6763000" />
     </task>
     <servers />
   </component>

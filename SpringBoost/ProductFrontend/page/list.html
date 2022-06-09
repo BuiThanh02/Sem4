@@ -162,7 +162,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Thumbnail</th>
+                    <th style="width: 200px">Thumbnail</th>
                     <th>Product Name</th>
                     <th>Describe</th>
                     <th>Price</th>
@@ -255,6 +255,10 @@
 </script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
+    LoadData();
+    HandleDeleteClick();
+  })
+  function LoadData(){
     var xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.onreadystatechange = function () {
       if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
@@ -264,7 +268,7 @@
           const element = jsonResult[i];
           contentText += `<tr>
                                             <td>
-                                                <img src="${element.thumbnail}" alt="${element.proName}" style="border-radius: 100px; width: 10%">
+                                                <img src="${element.thumbnail}" alt="${element.proName}" style="width: 80px; height: 80px">
                                             </td>
                                             <td> ${element.proName} </td>
                                             <td> ${element.proDescribe} </td>
@@ -276,12 +280,12 @@
                                                 </i>
                                                 View
                                               </a>
-                                              <a class="btn btn-info btn-sm" href="form.html/id=${element.proId}">
+                                              <a class="btn btn-info btn-sm" href="update.html?id=${element.proId}">
                                                 <i class="fas fa-pencil-alt">
                                                 </i>
                                                 Edit
                                               </a>
-                                              <a class="btn btn-danger btn-sm" href="detail.html/id=${element.proId}">
+                                              <a data-id="${element.proId}" class="btn btn-danger btn-sm btn-delete" href="detail.html/id=${element.proId}">
                                                 <i class="fas fa-trash">
                                                 </i>
                                                 Delete
@@ -299,7 +303,31 @@
     }
     xmlHttpRequest.open('GET', 'https://t2010a-springboot-demo.herokuapp.com/api/v1/products', true)
     xmlHttpRequest.send();
-  })
+  }
+  function HandleDeleteClick(){
+    var listBtnDelete = document.querySelectorAll('.btn-delete');
+    for (let i = 0; i < listBtnDelete.length; i++){
+      const element = listBtnDelete[i];
+      element.onclick = function (e){
+        e.preventDefault();
+        if (confirm('Are you sure?')){
+          var id = this.getAttribute('data-id');
+          HandleDeleteById(id);
+        }
+      }
+    }
+  }
+  function HandleDeleteById(id){
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onreadystatechange = function (){
+      if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200){
+        alert('Action success!');
+        window.location.reload();
+      }
+    }
+    xmlHttpRequest.open('DELETE', `https://t2010a-springboot-demo.herokuapp.com/api/v1/products/${id}`)
+    xmlHttpRequest.send()
+  }
 </script>
 </body>
 </html>

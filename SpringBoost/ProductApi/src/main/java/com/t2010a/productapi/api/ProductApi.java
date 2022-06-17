@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RequestMapping(path = "api/v1/products")
 @RestController
@@ -21,8 +22,8 @@ public class ProductApi {
     }
 
     @RequestMapping(method = RequestMethod.GET,path = "{id}")
-    public ResponseEntity<?> findById(@PathVariable String proId){
-        Optional<Product> optionalProduct = productService.findById(proId);
+    public ResponseEntity<?> findById(@PathVariable UUID id){
+        Optional<Product> optionalProduct = productService.findById(id);
         if (!optionalProduct.isPresent()){
             ResponseEntity.badRequest().build();
         }
@@ -31,42 +32,39 @@ public class ProductApi {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Product> create(@RequestBody Product product){
-        if (!productService.findById(product.getProId()).isPresent()){
+        if (!productService.findById(product.getId()).isPresent()){
             ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(productService.save(product));
     }
 
     @RequestMapping(method = RequestMethod.DELETE,path = "{id}")
-    public ResponseEntity<?> deleteById(@PathVariable String proId){
-        if (!productService.findById(proId).isPresent()){
+    public ResponseEntity<?> deleteById(@PathVariable UUID id){
+        if (!productService.findById(id).isPresent()){
             ResponseEntity.badRequest().build();
         }
-        productService.deleteById(proId);
+        productService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "{id}")
-    public ResponseEntity<Product> update(@PathVariable String proId, @RequestBody Product updateProduct){
-        Optional<Product> optionalProduct = productService.findById(proId);
+    public ResponseEntity<Product> update(@PathVariable UUID id, @RequestBody Product updateProduct){
+        Optional<Product> optionalProduct = productService.findById(id);
         if (!optionalProduct.isPresent()){
             ResponseEntity.badRequest().build();
         }
         Product existProduct = optionalProduct.get();
 
         existProduct.setCreatedAt(updateProduct.getCreatedAt());
-        existProduct.setDeletedAt(updateProduct.getDeletedAt());
         existProduct.setUpdatedAt(updateProduct.getUpdatedAt());
-        existProduct.setMakerDetail(updateProduct.getMakerDetail());
-        existProduct.setProDescribe(updateProduct.getProDescribe());
-        existProduct.setProDetail(updateProduct.getProDetail());
-        existProduct.setProName(updateProduct.getProName());
-        existProduct.setProPrice(updateProduct.getProPrice());
-        existProduct.setProQty(updateProduct.getProQty());
+        existProduct.setCategoryId(updateProduct.getCategoryId());
+        existProduct.setDescribe(updateProduct.getDescribe());
+        existProduct.setDetail(updateProduct.getDetail());
+        existProduct.setName(updateProduct.getName());
+        existProduct.setPrice(updateProduct.getPrice());
+        existProduct.setQty(updateProduct.getQty());
+        existProduct.setId(updateProduct.getId());
         existProduct.setStatus(updateProduct.getStatus());
-        existProduct.setUserUpdateDetail(updateProduct.getUserUpdateDetail());
-        existProduct.setUserCreateDetail(updateProduct.getUserCreateDetail());
-        existProduct.setUserDeleteDetail(updateProduct.getUserDeleteDetail());
         existProduct.setThumbnail(updateProduct.getThumbnail());
 
         return ResponseEntity.ok(productService.save(existProduct));

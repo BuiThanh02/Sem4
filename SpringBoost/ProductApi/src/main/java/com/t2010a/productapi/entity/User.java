@@ -6,9 +6,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -18,24 +17,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "users")
+public class User {
     @Id
     private UUID id;
     private String name;
-    private int qty;
-    private String thumbnail;
-    private String describe;
-    private String detail;
-    private BigDecimal price;
+    private String address;
+    private String phone;
+    private String email;
     @CreationTimestamp
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
     private int status;
-    private UUID categoryId;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", updatable = false, insertable = false)
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     @JsonBackReference
-    private Category category;
+    private Set<Order> orderList;
 }

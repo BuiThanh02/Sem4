@@ -155,9 +155,10 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>SLNO</th>
                                         <th>Name</th>
-                                        <th>WAGE</th>
+                                        <th>DOS</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody id="list-product">
@@ -165,9 +166,10 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>SLNO</th>
                                         <th>Name</th>
-                                        <th>WAGE</th>
+                                        <th>DOS</th>
+                                        <th></th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -250,10 +252,10 @@
                 for (let i = 0; i < jsonResult.length; i++) {
                     const element = jsonResult[i];
                     contentText += `<tr>
-                                            <td> ${element.SLNo} </td>
-                                            <td> ${element.SalesmanName} </td>
-                                            <td>$ ${element.DOS} </td>
-                                            <td><a href="saledetail.html?id=${element.SalesmanID}"></a></td>
+                                            <td> ${element.slno} </td>
+                                            <td> ${element.salesmanName} </td>
+                                            <td>${element.dos} </td>
+                                            <td><a href="saledetail.html?id=${element.salesmanID}">detail</a></td>
                                         </tr>`;
                 }
                 console.log(contentText);

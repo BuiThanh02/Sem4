@@ -17,7 +17,6 @@ import javax.persistence.*;
 public class Sale {
     @Id
     private String SalesmanID;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int SLNo;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "ProdID")

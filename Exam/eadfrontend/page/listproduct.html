@@ -155,9 +155,11 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Name</th>
-                                        <th>WAGE</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>DATEOFMANF</th>
+                                        <th>PRICE</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody id="list-product">
@@ -165,9 +167,11 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Name</th>
-                                        <th>WAGE</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>DATEOFMANF</th>
+                                        <th>PRICE</th>
+                                        <th></th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -250,11 +254,11 @@
                 for (let i = 0; i < jsonResult.length; i++) {
                     const element = jsonResult[i];
                     contentText += `<tr>
-                                            <td> ${element.ProdName} </td>
-                                            <td> ${element.Description} </td>
-                                            <td> ${element.DateOfManf} </td>
-                                            <td>$ ${element.Price} </td>
-                                            <td><a href="saledetail.html?id=${element.ProdId}"></a></td>
+                                            <td> ${element.prodName} </td>
+                                            <td> ${element.description} </td>
+                                            <td> ${element.dateOfManf} </td>
+                                            <td>$ ${element.price} </td>
+                                            <td><a href="prodetail.html?id=${element.prodID}">Detail</a></td>
                                         </tr>`;
                 }
                 console.log(contentText);

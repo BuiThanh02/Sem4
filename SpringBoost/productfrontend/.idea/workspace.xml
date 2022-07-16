@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56cfcc86-d193-414f-af68-bca222adf8c5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Exam/eadfrontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exam/eadfrontend/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Exam/eadfrontend/page/prodetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exam/eadfrontend/page/prodetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Exam/eadfrontend/page/saledetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exam/eadfrontend/page/saledetail.html" afterDir="false" />
-    </list>
+    <list default="true" id="56cfcc86-d193-414f-af68-bca222adf8c5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +59,7 @@
       <workItem from="1654827349028" duration="673000" />
       <workItem from="1655276456157" duration="366000" />
       <workItem from="1657953665478" duration="710000" />
-      <workItem from="1657960216751" duration="369000" />
+      <workItem from="1657960216751" duration="546000" />
     </task>
     <servers />
   </component>

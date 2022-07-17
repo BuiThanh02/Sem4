@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="28373040-9dd4-4448-aa36-35aeb36f0ccb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../ead/src/main/java/com/example/ead/seeder/ApplicationSeeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ead/src/main/java/com/example/ead/seeder/ProductSeeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ead/src/main/java/com/example/ead/seeder/SaleSeeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ead/src/main/java/com/example/ead/util/DateTimeRandom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ead/src/main/java/com/example/ead/util/NumberUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ead/src/main/java/com/example/ead/entity/Sale.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ead/src/main/java/com/example/ead/entity/Sale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ead/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../ead/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/listproduct.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/listproduct.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/listsale.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/listsale.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/prodetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/prodetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/saledetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/saledetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../SpringBoost/productfrontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../SpringBoost/productfrontend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springboot_assignment_frontend/page/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/../springboot_assignment_frontend/page/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +54,7 @@
       <option name="presentableId" value="Default" />
       <updated>1657959680015</updated>
       <workItem from="1657959681178" duration="2411000" />
+      <workItem from="1658064572874" duration="632000" />
     </task>
     <servers />
   </component>

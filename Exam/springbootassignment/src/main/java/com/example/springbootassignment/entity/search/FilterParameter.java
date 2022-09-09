@@ -14,7 +14,5 @@ public class FilterParameter {
     private int page;
     private int limit;
     private String userId;
-    private LocalDateTime start;
-    private LocalDateTime end;
     private int status;
 }

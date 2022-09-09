@@ -19,7 +19,4 @@ public class BaseEntity {
     @LastModifiedDate
     private LocalDateTime updateAt;
     private LocalDateTime deleteAt;
-    private String createdBy;
-    private String updatedBy;
-    private String deletedBy;
 }

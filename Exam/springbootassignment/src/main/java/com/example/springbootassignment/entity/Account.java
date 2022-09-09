@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -20,6 +21,7 @@ public class Account extends BaseEntity {
 //    @GeneratedValue(generator = "uuid")
 //    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    @Column(unique = true)
     private String username;
     private String password;
     private String firstName;
@@ -32,5 +34,12 @@ public class Account extends BaseEntity {
     private String detail;
     @Enumerated(EnumType.ORDINAL)
     private AccountStatus status;
-    private String role;
+    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(
+            name = "accounts_roles",
+            joinColumns = @JoinColumn(
+                    name = "account_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
 }

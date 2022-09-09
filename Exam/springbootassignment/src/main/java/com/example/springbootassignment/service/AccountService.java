@@ -1,6 +1,7 @@
 package com.example.springbootassignment.service;
 
 import com.example.springbootassignment.entity.Account;
+import com.example.springbootassignment.entity.Role;
 import com.example.springbootassignment.entity.dto.AccountDto;
 import com.example.springbootassignment.entity.dto.CredentialDto;
 import com.example.springbootassignment.entity.myenum.AccountStatus;
@@ -20,10 +21,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -46,23 +44,24 @@ public class AccountService implements UserDetailsService {
                 .username(accountDto.getUsername())
                 .status(AccountStatus.ACTIVE)
                 .thumbnail(null)
-                .role("USER")
+                .roles(new HashSet<>((Collection) new Role("USER")))
                 .build();
         return accountRepository.save(account);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.findByUsername(username);
+        Optional<Account> accountOptional = accountRepository.findByUsername(username);
+        Account account = accountOptional.orElse(null);
         if (account == null) {
             throw new UsernameNotFoundException("User not found in database");
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        if(account.getRole().equals("USER")){
-            authorities.add(new SimpleGrantedAuthority("USER"));
-        } else if (account.getRole().equals("ADMIN")) {
-            authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        }
+//        if(account.getRole().equals("USER")){
+//            authorities.add(new SimpleGrantedAuthority("USER"));
+//        } else if (account.getRole().equals("ADMIN")) {
+//            authorities.add(new SimpleGrantedAuthority("ADMIN"));
+//        }
         return new User(account.getUsername(), account.getPassword(), authorities);
     }
 
@@ -92,7 +91,10 @@ public class AccountService implements UserDetailsService {
     }
 
     public Page<Account> findByRole(String role, int page, int limit){
-        return accountRepository.findAllByRoleEquals(role, PageRequest.of(page, limit));
+        Set<Role> roles = new HashSet<>();
+        Role role1 = new Role(role);
+        roles.add(role1);
+        return accountRepository.findAllByRoleEquals(roles, PageRequest.of(page, limit));
     }
 
 //    public Page<Account> findByCreateAt(LocalDateTime createAt, int page, int limit){
@@ -125,5 +127,9 @@ public class AccountService implements UserDetailsService {
 
     public Page<Account> findAll(int page, int limit){
         return accountRepository.findAll(PageRequest.of(page, limit));
+    }
+    public Account getAccount(String username) {
+        Optional<Account> byUsername = accountRepository.findByUsername(username);
+        return byUsername.orElse(null);
     }
 }

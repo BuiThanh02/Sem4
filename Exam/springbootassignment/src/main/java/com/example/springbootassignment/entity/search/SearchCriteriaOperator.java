@@ -6,5 +6,6 @@ public enum SearchCriteriaOperator {
     LESS_THAN, LESS_THAN_OR_EQUALS,
     LIKE,
     IN,
+    JOIN_USERNAME, JOIN_DETAIL_PRODUCT, JOIN_USER,
     JOIN;
 }

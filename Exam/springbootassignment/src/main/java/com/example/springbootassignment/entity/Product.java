@@ -20,6 +20,7 @@ public class Product extends BaseEntity {
 //    @GeneratedValue(generator = "uuid")
 //    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    @Column(unique = true)
     private String name;
     private BigDecimal price;
     private String description;

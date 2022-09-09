@@ -31,7 +31,6 @@ public class Order extends BaseEntity {
     private OrderSimpleStatus status;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<OrderDetail> orderDetails;
-    private boolean isShoppingCart;
 
     public void calculateTotalPrice() {
         this.totalPrice = new BigDecimal(0);

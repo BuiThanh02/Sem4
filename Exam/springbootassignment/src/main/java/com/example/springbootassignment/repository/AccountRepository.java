@@ -1,6 +1,7 @@
 package com.example.springbootassignment.repository;
 
 import com.example.springbootassignment.entity.Account;
+import com.example.springbootassignment.entity.Role;
 import com.example.springbootassignment.entity.myenum.AccountStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,16 +9,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, String> {
-    Account findByUsername(String username);
+    Optional<Account> findByUsername(String username);
 
 //    Page<Account> findAllByFirstNameOrLastNameOrAddressOrEmailOrPhoneOrUsernameContains(String search, Pageable pageable);
 
     Page<Account> findAllByStatusEquals(AccountStatus status, Pageable pageable);
 
-    Page<Account> findAllByRoleEquals(String role, Pageable pageable);
+    Page<Account> findAllByRoleEquals(Set<Role> role, Pageable pageable);
 
 //    Page<Account> findAllByAddressContains(String address, Pageable pageable);
 //

@@ -29,7 +29,6 @@ public class ApiAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        log.info("checking ......................... ");
         try {
             String jsonData =  request.getReader().lines().collect(Collectors.joining());
             Gson gson = new Gson();
@@ -71,7 +70,7 @@ public class ApiAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             HttpServletResponse response,
             AuthenticationException failed) throws IOException {
         HashMap<String, String> errors = new HashMap<>();
-        errors.put("message", "stupid user");
+        errors.put("message", "wrong information");
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         Gson gson = new Gson();
         response.getWriter().println(gson.toJson(errors));

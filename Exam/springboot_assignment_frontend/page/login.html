@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/library/css/login.css">
 </head>
 <body>
 <div class="login-wrap">
@@ -18,7 +18,7 @@
         </form>
     </div>
 </div>
-<script src="/js/login.js"></script>
+<script src="/library/js/login.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         handleSubmit();
@@ -43,6 +43,10 @@
                 var xmlHttpRequest = new XMLHttpRequest();
                 xmlHttpRequest.onreadystatechange = function (){
                     if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+                        var jsonResult = JSON.parse(xmlHttpRequest.responseText);
+                        console.log(jsonResult);
+                        var element = jsonResult.roles[0];
+                        console.log(element);
                         alert('login success!');
                         window.location.href = 'product.html';
                     }

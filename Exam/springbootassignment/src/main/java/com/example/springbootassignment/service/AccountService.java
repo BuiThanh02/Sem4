@@ -6,10 +6,12 @@ import com.example.springbootassignment.entity.dto.AccountDto;
 import com.example.springbootassignment.entity.dto.CredentialDto;
 import com.example.springbootassignment.entity.myenum.AccountStatus;
 import com.example.springbootassignment.repository.AccountRepository;
+import com.example.springbootassignment.repository.RoleRepository;
 import com.example.springbootassignment.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -31,37 +34,55 @@ public class AccountService implements UserDetailsService {
 
     final PasswordEncoder passwordEncoder;
 
+    final RoleRepository roleRepository;
+
     public Account register(AccountDto accountDto){
+        Set<Role> roles = new HashSet<>();
+//        for (Role role: accountDto.getRoles()) {
+//            Optional<Role> userRoleOptional = roleRepository.findByName(role.getName());
+//            Role userRole = userRoleOptional.orElse(null);
+//            if (userRole == null) {
+//                //create new role
+//                userRole = roleRepository.save(new Role("user"));
+//                return null;
+//            }
+//            roles.add(userRoleOptional.get());
+//        }
+        Role role = roleRepository.findByName("user");
+        if (role == null){
+            role = new Role("user");
+        }
+        roles.add(role);
         Account account = Account.builder()
                 .id(UUID.randomUUID().toString())
-                .address(accountDto.getAddress())
+                .address(null)
                 .detail(null)
-                .email(accountDto.getEmail())
-                .phone(accountDto.getPhone())
-                .firstName(accountDto.getFirstName())
-                .lastName(accountDto.getLastName())
+                .email(null)
+                .phone(null)
+                .fullName(accountDto.getFullName())
                 .password(passwordEncoder.encode(accountDto.getPassword()))
                 .username(accountDto.getUsername())
                 .status(AccountStatus.ACTIVE)
                 .thumbnail(null)
-                .roles(new HashSet<>((Collection) new Role("USER")))
+                .roles(roles)
                 .build();
+        account.setCreateAt(LocalDateTime.now());
+        account.setUpdateAt(LocalDateTime.now());
         return accountRepository.save(account);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Account> accountOptional = accountRepository.findByUsername(username);
+        Optional<Account> accountOptional = accountRepository.findByUsernameAndStatus(username, AccountStatus.ACTIVE);
         Account account = accountOptional.orElse(null);
         if (account == null) {
             throw new UsernameNotFoundException("User not found in database");
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//        if(account.getRole().equals("USER")){
-//            authorities.add(new SimpleGrantedAuthority("USER"));
-//        } else if (account.getRole().equals("ADMIN")) {
-//            authorities.add(new SimpleGrantedAuthority("ADMIN"));
-//        }
+        for (Role role:
+                account.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
         return new User(account.getUsername(), account.getPassword(), authorities);
     }
 
@@ -71,65 +92,49 @@ public class AccountService implements UserDetailsService {
 
     public CredentialDto generateCredential(UserDetails userDetail, HttpServletRequest request) {
         String accessToken = JWTUtil.generateToken(userDetail.getUsername(),
-                userDetail.getAuthorities().iterator().next().getAuthority(),
+                userDetail.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()),
                 request.getRequestURI(),
                 JWTUtil.ONE_DAY * 7);
 
         String refreshToken = JWTUtil.generateToken(userDetail.getUsername(),
-                userDetail.getAuthorities().iterator().next().getAuthority(),
+                userDetail.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()),
                 request.getRequestURI(),
                 JWTUtil.ONE_DAY * 14);
         return new CredentialDto(accessToken, refreshToken);
     }
 
-//    public Page<Account> search(String search, int page, int limit){
-//        return accountRepository.findAllByFirstNameOrLastNameOrAddressOrEmailOrPhoneOrUsernameContains(search, PageRequest.of(page, limit));
-//    }
-
-    public Page<Account> findByStatus(AccountStatus status, int page, int limit){
-        return accountRepository.findAllByStatusEquals(status, PageRequest.of(page, limit));
+    public Optional <Account> getAccount(String username) {
+        return accountRepository.findByUsernameAndStatus(username, AccountStatus.ACTIVE);
     }
 
-    public Page<Account> findByRole(String role, int page, int limit){
-        Set<Role> roles = new HashSet<>();
-        Role role1 = new Role(role);
-        roles.add(role1);
-        return accountRepository.findAllByRoleEquals(roles, PageRequest.of(page, limit));
+    public Optional <Account> getAccountById(String id){
+        return accountRepository.findByIdAndStatus(id, AccountStatus.ACTIVE);
     }
 
-//    public Page<Account> findByCreateAt(LocalDateTime createAt, int page, int limit){
-//        return accountRepository.findAllByCreateAt(createAt, PageRequest.of(page, limit));
-//    }
-//
-//    public Page<Account> findByDeleteAt(LocalDateTime deleteAt, int page, int limit){
-//        return accountRepository.findAllByDeleteAt(deleteAt, PageRequest.of(page, limit));
-//    }
-//
-//    public Page<Account> findByUpdateAt(LocalDateTime updateAt, int page, int limit){
-//        return accountRepository.findAllByUpdateAt(updateAt, PageRequest.of(page, limit));
-//    }
-
-    public Page<Account> findByCreateBetween(LocalDateTime min, LocalDateTime max, int page, int  limit){
-        return accountRepository.findAllByCreateAtBetween(min, max, PageRequest.of(page, limit));
+    public Account save(Account account){
+        return accountRepository.save(account);
     }
 
-    public Page<Account> findByUpdateBetween(LocalDateTime min, LocalDateTime max, int page, int  limit){
-        return accountRepository.findAllByUpdateAtBetween(min, max, PageRequest.of(page, limit));
+    public String encode(String password){
+        return passwordEncoder.encode(password);
     }
 
-    public Page<Account> findByDeleteBetween(LocalDateTime min, LocalDateTime max, int page, int  limit){
-        return accountRepository.findAllByDeleteAtBetween(min, max, PageRequest.of(page, limit));
+    public Page<Account> findAll(int page, int limit) {
+        return accountRepository.findAll(PageRequest.of(page, limit));
+    }
+
+    public Optional<Account> findByEmail(String email){
+        return accountRepository.findByEmailAndStatus(email, AccountStatus.ACTIVE);
     }
 
     public Optional<Account> findById(String id){
         return accountRepository.findById(id);
     }
 
-    public Page<Account> findAll(int page, int limit){
-        return accountRepository.findAll(PageRequest.of(page, limit));
-    }
-    public Account getAccount(String username) {
-        Optional<Account> byUsername = accountRepository.findByUsername(username);
-        return byUsername.orElse(null);
+    public void deleteById(String id) {
+        Optional<Account> optionalAccount =  accountRepository.findByIdAndStatus(id, AccountStatus.ACTIVE);
+        Account account = optionalAccount.get();
+        account.setStatus(AccountStatus.DEACTIVE);
+        accountRepository.save(account);
     }
 }

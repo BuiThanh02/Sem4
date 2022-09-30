@@ -2,9 +2,12 @@ package com.example.springbootassignment.api;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.springbootassignment.entity.Account;
+import com.example.springbootassignment.entity.Product;
+import com.example.springbootassignment.entity.Role;
 import com.example.springbootassignment.entity.dto.AccountDto;
 import com.example.springbootassignment.entity.dto.CredentialDto;
 import com.example.springbootassignment.entity.dto.LoginDto;
+import com.example.springbootassignment.entity.dto.RePassDto;
 import com.example.springbootassignment.service.AccountService;
 import com.example.springbootassignment.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
@@ -14,14 +17,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "api/v1/accounts")
@@ -31,7 +32,7 @@ public class AccountApi {
 
     final AccountService accountService;
 
-    @RequestMapping(path = "register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody AccountDto accountDto) {
         // co the tien hanh validate
         if (!accountDto.getPassword().equals(accountDto.getRePass())){
@@ -68,23 +69,25 @@ public class AccountApi {
             DecodedJWT decodedJWT = JWTUtil.getDecodedJwt(token);
             String username = decodedJWT.getSubject();
             //load account in the token
-            Account account = accountService.getAccount(username);
+            Optional<Account> accountOptional = accountService.getAccount(username);
+            Account account = accountOptional.get();
             if (account == null) {
                 return ResponseEntity.badRequest().body("Wrong token: Username not exist");
             }
             //now return new token
             //generate tokens
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//            if(account.getRole().equals("USER")){
-//                authorities.add(new SimpleGrantedAuthority("USER"));
-//            } else if (account.getRole().equals("ADMIN")) {
-//                authorities.add(new SimpleGrantedAuthority("ADMIN"));
-//            }
+            List<String> roles = new ArrayList<>();
+            for (Role role:
+                    account.getRoles()) {
+                authorities.add(new SimpleGrantedAuthority(role.getName()));
+                roles.add(role.getName());
+            }
 
 //            authorities.add(new SimpleGrantedAuthority(account.getRole().getName()));
             String accessToken = JWTUtil.generateToken(
                     account.getUsername(),
-                    String.valueOf(authorities),
+                    roles,
                     request.getRequestURL().toString(),
                     JWTUtil.ONE_DAY * 7);
 
@@ -99,5 +102,22 @@ public class AccountApi {
             //show error
             return ResponseEntity.internalServerError().body(ex.getMessage());
         }
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, path = "/repass/{username}")
+    public ResponseEntity<?> rePass(@PathVariable String username, @RequestBody RePassDto rePassDto){
+        Optional<Account> accountOptional = accountService.getAccount(username);
+        Account account = accountOptional.get();
+        if (account == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Account not found");
+        }
+        if (!Objects.equals(rePassDto.getNewPass(), rePassDto.getReNewPass())){
+            return ResponseEntity.badRequest().body("password not match");
+        }
+        if (accountService.matchPassword(rePassDto.getOldPass(), account.getPassword())){
+
+            account.setPassword(accountService.encode(rePassDto.getNewPass()));
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("repass fails");
     }
 }

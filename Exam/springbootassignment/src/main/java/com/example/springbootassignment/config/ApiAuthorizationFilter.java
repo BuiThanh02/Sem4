@@ -18,8 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
+import static java.util.Arrays.stream;
+
 public class ApiAuthorizationFilter extends OncePerRequestFilter {
-    private static final String[] IGNORE_PATH = {"/api/v1/accounts/login", "/api/v1/accounts/register", "/api/v1/products/**", "/api/v1/products/search"};
+    private static final String[] IGNORE_PATH = {"/api/v1/accounts/login", "/api/v1/accounts/register", "/api/v1/products/**", "/api/v1/products/search", "/api/v1/accounts/**"};
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -33,7 +35,7 @@ public class ApiAuthorizationFilter extends OncePerRequestFilter {
 
         // trường hợp client không có request header theo format cần thiết
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Thanh ")) {
             // cho qua (không có dấu kiểm duyệt)
             filterChain.doFilter(request, response);
             return;
@@ -42,7 +44,7 @@ public class ApiAuthorizationFilter extends OncePerRequestFilter {
         //lấy token từ request header
         try {
             // remove chữ Bearer
-            String token = authorizationHeader.replace("Bearer", "").trim();
+            String token = authorizationHeader.replace("Thanh", "").trim();
 
             // dịch ngược JWT
             DecodedJWT decodedJWT = JWTUtil.getDecodedJwt(token);
@@ -51,15 +53,28 @@ public class ApiAuthorizationFilter extends OncePerRequestFilter {
             String username = decodedJWT.getSubject();
 
             //lấy thông tin của role đăng nhập
-            String role = decodedJWT.getClaim(JWTUtil.ROLE_CLAIM_KEY).asString();
+//            String role = decodedJWT.getClaim(JWTUtil.ROLE_CLAIM_KEY).asString();
+//
+//            // tạo danh sách các role
+//            Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+//            authorities.add(new SimpleGrantedAuthority(role));
+//
+//            // lưu thông tin nguời dùng đăng nhập vào spring context
+//            // để cho các controller hay filter có thể sử dụng
+//            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
+//            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+//            filterChain.doFilter(request, response);
 
-            // tạo danh sách các role
+            String[] roles = decodedJWT.getClaim(JWTUtil.ROLE_CLAIM_KEY).asArray(String.class);
+
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(role));
 
-            // lưu thông tin nguời dùng đăng nhập vào spring context
-            // để cho các controller hay filter có thể sử dụng
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
+            stream(roles).forEach(role -> {
+                authorities.add(new SimpleGrantedAuthority(role));
+            });
+
+            UsernamePasswordAuthenticationToken authenticationToken =
+                    new UsernamePasswordAuthenticationToken(username, null, authorities);
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             filterChain.doFilter(request, response);
 

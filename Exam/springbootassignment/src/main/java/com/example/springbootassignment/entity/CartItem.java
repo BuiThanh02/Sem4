@@ -3,6 +3,7 @@ package com.example.springbootassignment.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 
 /**

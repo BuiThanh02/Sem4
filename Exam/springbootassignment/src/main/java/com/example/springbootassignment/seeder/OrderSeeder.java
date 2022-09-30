@@ -37,7 +37,7 @@ public class OrderSeeder {
             // Tạo mới đơn hàng.
             Order order = new Order();
             order.setId(UUID.randomUUID().toString());
-            order.setShoppingCart(false);
+//            order.setShoppingCart(false);
             order.setAccount(account);
             order.setStatus(OrderSimpleStatus.DONE);
             // Tạo danh sách order detail cho đơn hàng.

@@ -35,10 +35,10 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(
                         "/api/v1/products",
-                        "/api/v1/account/login",
-                        "/api/v1/account/register",
+                        "/api/v1/accounts/login",
+                        "/api/v1/accounts/register",
                         "/api/v1/products**",
-                        "/api/v1/products/**")
+                        "/api/v1/accounts/**")
                 .permitAll();
         http.cors().and().csrf().disable();
         http.authorizeRequests()

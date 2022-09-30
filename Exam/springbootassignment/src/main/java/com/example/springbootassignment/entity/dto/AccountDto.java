@@ -1,23 +1,24 @@
 package com.example.springbootassignment.entity.dto;
 
+import com.example.springbootassignment.entity.Account;
+import com.example.springbootassignment.entity.Role;
+import com.example.springbootassignment.entity.base.BaseEntity;
 import com.example.springbootassignment.entity.myenum.AccountStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class AccountDto {
-    private String id;
     @NotEmpty(message = "username missing")
     private String username;
     @NotEmpty(message = "password missing")
@@ -25,20 +26,6 @@ public class AccountDto {
     private String password;
     @NotEmpty(message = "password repeat missing")
     private String rePass;
-    @NotEmpty(message = "firstName missing")
-    private String firstName;
-    @NotEmpty(message = "lastName missing")
-    private String lastName;
-    @NotEmpty(message = "email missing")
-    @Email(message = "email wrong")
-    private String email;
-    @NotEmpty(message = "phone missing")
-    private String phone;
-    @NotEmpty(message = "address missing")
-    private String address;
-    private String thumbnail;
-    private String detail;
-    @Enumerated(EnumType.ORDINAL)
-    private AccountStatus status;
-    private String role;
+    @NotEmpty(message = "full name missing")
+    private String fullName;
 }

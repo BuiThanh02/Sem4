@@ -14,31 +14,12 @@ import java.util.Set;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, String> {
-    Optional<Account> findByUsername(String username);
+    Optional<Account> findByUsernameAndStatus(String username, AccountStatus status);
 
-//    Page<Account> findAllByFirstNameOrLastNameOrAddressOrEmailOrPhoneOrUsernameContains(String search, Pageable pageable);
+    Optional<Account> findByEmailAndStatus(String email, AccountStatus status);
 
-    Page<Account> findAllByStatusEquals(AccountStatus status, Pageable pageable);
-
-    Page<Account> findAllByRoleEquals(Set<Role> role, Pageable pageable);
-
-//    Page<Account> findAllByAddressContains(String address, Pageable pageable);
-//
-//    Account findByPhone(String phone);
-//
-//    Account findByEmail(String email);
-
-//    Page<Account> findAllByCreateAt(LocalDateTime createdAt, Pageable pageable);
-//
-//    Page<Account> findAllByUpdateAt(LocalDateTime updatedAt, Pageable pageable);
-//
-//    Page<Account> findAllByDeleteAt(LocalDateTime deletedAt, Pageable pageable);
-
-    Page<Account> findAllByCreateAtBetween(LocalDateTime min, LocalDateTime max, Pageable pageable);
-
-    Page<Account> findAllByUpdateAtBetween(LocalDateTime min, LocalDateTime max, Pageable pageable);
-
-    Page<Account> findAllByDeleteAtBetween(LocalDateTime min, LocalDateTime max, Pageable pageable);
-
+    Optional<Account> findByIdAndStatus(String id, AccountStatus status);
     Page<Account> findAll(Pageable pageable);
+
+    Optional<Account> findById(String id);
 }

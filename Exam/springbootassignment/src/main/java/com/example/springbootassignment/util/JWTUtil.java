@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.util.Date;
+import java.util.List;
 
 public class JWTUtil {
     private static Algorithm algorithm;
@@ -39,9 +40,10 @@ public class JWTUtil {
         return getVerifier().verify(token);
     }
 
-    public static String generateToken(String subject, String role, String issuer, int expireAfter) {
-        if (role == null || role.length() == 0) {
+    public static String generateToken(String subject, List<String> role, String issuer, int expireAfter) {
+        if (role == null || role.size() == 0) {
             return JWT.create()
+//                    .withClaim("userID", id)
                     .withSubject(subject)
                     .withExpiresAt(new Date(System.currentTimeMillis() + expireAfter))
                     .withIssuer(issuer)

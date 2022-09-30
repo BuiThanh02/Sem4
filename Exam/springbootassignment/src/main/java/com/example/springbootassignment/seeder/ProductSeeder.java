@@ -28,6 +28,12 @@ public class ProductSeeder {
             Product product = new Product();
             product.setId(UUID.randomUUID().toString() + i);
             product.setName(String.valueOf(faker.leagueOfLegends()));
+            for (Product pr:
+                    products) {
+                while (pr.getName().equals(product.getName())){
+                    product.setName(String.valueOf(faker.leagueOfLegends()));
+                }
+            }
             product.setDescription(faker.lorem().sentence());
             product.setDetail(faker.lorem().sentence());
             product.setThumbnails(faker.avatar().image());

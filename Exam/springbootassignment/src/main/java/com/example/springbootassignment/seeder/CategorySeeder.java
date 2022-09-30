@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,10 +20,17 @@ public class CategorySeeder {
     public static final int NUMBER_OF_CATEGORY = 10;
 
     public void generate(){
+
         for (int i = 0; i < NUMBER_OF_CATEGORY; i++){
             Category category = new Category();
             category.setId(UUID.randomUUID().toString());
             category.setName(faker.leagueOfLegends().rank());
+            for (Category category1:
+                 categoryList) {
+                while (category1.getName().equals(category.getName())){
+                    category.setName(faker.leagueOfLegends().rank());
+                }
+            }
             categoryList.add(category);
         }
         categoryRepository.saveAll(categoryList);

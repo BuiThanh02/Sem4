@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 import java.util.Set;
 
 @Getter
@@ -24,8 +25,8 @@ public class Account extends BaseEntity {
     @Column(unique = true)
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String fullName;
+    @Column(unique = true)
     private String email;
     private String phone;
     private String address;

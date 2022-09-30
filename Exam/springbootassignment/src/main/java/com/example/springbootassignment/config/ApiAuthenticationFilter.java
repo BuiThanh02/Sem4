@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -49,12 +50,12 @@ public class ApiAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             Authentication authResult) throws IOException {
         User user = (User) authResult.getPrincipal();
         String accessToken = JWTUtil.generateToken(user.getUsername(),
-                user.getAuthorities().iterator().next().getAuthority(),
+                user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()),
                 request.getRequestURI(),
                 JWTUtil.ONE_DAY * 7);
 
         String refreshToken = JWTUtil.generateToken(user.getUsername(),
-                user.getAuthorities().iterator().next().getAuthority(),
+                user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()),
                 request.getRequestURI(),
                 JWTUtil.ONE_DAY * 14);
         CredentialDto credentialDTO = new CredentialDto(accessToken, refreshToken);

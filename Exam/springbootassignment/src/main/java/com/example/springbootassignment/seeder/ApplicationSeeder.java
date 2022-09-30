@@ -18,13 +18,13 @@ public class ApplicationSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        boolean seed = false;
+        boolean seed = true;
 
         if(seed){
             accountSeeder.generate();
-            categorySeeder.generate();
-            productSeeder.generate();
-            orderSeeder.generate();
+//            categorySeeder.generate();
+//            productSeeder.generate();
+//            orderSeeder.generate();
         }
     }
 }
